@@ -18,6 +18,7 @@ ADD ./supervisor/guacamole.sv.conf /etc/supervisor/conf.d/
 RUN wget -O guacamole-0.9.2.war http://sourceforge.net/projects/guacamole/files/current/binary/guacamole-0.9.2.war/download && \
   wget -O guacamole-server-0.9.2.tar.gz http://sourceforge.net/projects/guacamole/files/current/source/guacamole-server-0.9.2.tar.gz/download && \
   tar -xzf guacamole-server-0.9.2.tar.gz && \
+  cp guacamole.0.9.2.war /var/lib/tomcat7/webapps/guacamole.war && \
   cd guacamole-server-0.9.2 && \
   ./configure --with-init-dir=/etc/init.d && \
   make && \
@@ -25,8 +26,8 @@ RUN wget -O guacamole-0.9.2.war http://sourceforge.net/projects/guacamole/files/
   update-rc.d guacd defaults && \
   ldconfig && \
   mkdir /usr/share/tomcat7/.guacamole && \
-  ln -s /etc/guacamole/guacamole.properties /usr/share/tomcat7/.guacamole && \
-  cp guacamole.0.9.2.war /var/lib/tomcat7/webapps/guacamole.war
+  ln -s /etc/guacamole/guacamole.properties /usr/share/tomcat7/.guacamole
+  
 
 EXPOSE 8080 
 
