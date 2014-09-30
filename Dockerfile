@@ -2,10 +2,10 @@ FROM ubuntu:latest
 MAINTAINER Boggart <github.com/Boggart>
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update
-RUN apt-get install software-properties-common supervisor
+RUN apt-get install -y software-properties-common supervisor
 RUN add-apt-repository -y ppa:guacamole/stable
 RUN apt-get update
-RUN apt-get install guacamole-tomcat libguac-client-ssh0 libguac-client-rdp0
+RUN apt-get install -y guacamole-tomcat libguac-client-ssh0 libguac-client-rdp0
 
 ADD ./config/guacamole.properties /etc/guacamole/
 ADD ./config/user-mapping.xml /etc/guacamole/
