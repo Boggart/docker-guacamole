@@ -29,5 +29,9 @@ ADD ./supervisor/supervisor.conf /etc/supervisor/supervisor.conf
 ADD ./supervisor/guacamole.sv.conf /etc/supervisor/conf.d/
 ADD ./supervisor/tomcat7.sv.conf /etc/supervisor/conf.d/
 
+ENV CATALINA_BASE /var/lib/tomcat7
+ENV CATALINA_HOME /usr/share/tomcat7
+ENV GUACAMOLE_HOME /etc/guacamole
+
 EXPOSE 8080 
 CMD ["supervisord", "-c", "/etc/supervisor/supervisor.conf"]
