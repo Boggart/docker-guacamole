@@ -20,7 +20,7 @@ RUN wget -O guacamole-0.9.2.war http://sourceforge.net/projects/guacamole/files/
   update-rc.d guacd defaults && \
   ldconfig && \
   mkdir /usr/share/tomcat7/.guacamole && \
-  mkdir -p /etc/guacamole /var/lib/guacamole/classpath 
+  mkdir -p /etc/guacamole /var/lib/guacamole/classpath && \
   ln -s /etc/guacamole/guacamole.properties /usr/share/tomcat7/.guacamole
   
 ADD ./config/guacamole.properties /etc/guacamole/
@@ -30,6 +30,4 @@ ADD ./supervisor/guacamole.sv.conf /etc/supervisor/conf.d/
 ADD ./supervisor/tomcat7.sv.conf /etc/supervisor/conf.d/
 
 EXPOSE 8080 
-
-# Activate guacd service and start tomcat under supervisor so the Docker container is persisted
 CMD ["supervisord", "-c", "/etc/supervisor/supervisor.conf"]
