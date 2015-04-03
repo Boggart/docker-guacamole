@@ -1,19 +1,17 @@
 FROM ubuntu:latest
 MAINTAINER Boggart <github.com/Boggart>
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update
-RUN apt-get install -y \
+RUN apt-get update && apt-get install -y \
   supervisor wget make tomcat7 \
-  libcairo2-dev libpng12-dev uuid libossp-uuid-dev \
-  libfreerdp-dev freerdp-x11 libpango-1.0-0 libpango1.0-dev \
-  libssh2-1 libssh2-1-dev libssh-dev libtelnet-dev libvncserver-dev \
-  libpulse-dev libssl1.0.0 gcc libvorbis-dev
+  libcairo2-dev libpng12-dev libossp-uuid-dev libfreerdp-dev \
+  libpango1.0-dev libssh2-1-dev libtelnet-dev libvncserver-dev \
+  libpulse-dev libssl-dev libvorbis-dev
 
-RUN wget -O guacamole-0.9.2.war http://sourceforge.net/projects/guacamole/files/current/binary/guacamole-0.9.2.war/download && \
-  wget -O guacamole-server-0.9.2.tar.gz http://sourceforge.net/projects/guacamole/files/current/source/guacamole-server-0.9.2.tar.gz/download && \
-  tar -xzf guacamole-server-0.9.2.tar.gz && \
-  cp guacamole-0.9.2.war /var/lib/tomcat7/webapps/guacamole.war && \
-  cd guacamole-server-0.9.2 && \
+RUN wget -O guacamole-0.9.6.war http://sourceforge.net/projects/guacamole/files/current/binary/guacamole-0.9.6.war/download && \
+  wget -O guacamole-server-0.9.6.tar.gz http://sourceforge.net/projects/guacamole/files/current/source/guacamole-server-0.9.6.tar.gz/download && \
+  tar -xzf guacamole-server-0.9.6.tar.gz && \
+  cp guacamole-0.9.6.war /var/lib/tomcat7/webapps/guacamole.war && \
+  cd guacamole-server-0.9.6 && \
   ./configure --with-init-dir=/etc/init.d && \
   make && \
   make install && \
